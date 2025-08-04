@@ -164,8 +164,8 @@ const exportImage = async () => {
     const canvas = await html2canvas(exportContainer, {
       backgroundColor: '#ffffff',
       scale: 2,
-      width: 800,
-      height: 1000,
+      width: 1000,
+      height: 1200,
       useCORS: true,
       allowTaint: true
     });
