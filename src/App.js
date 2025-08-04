@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Plus, Download, Trash2, Edit2, Check, X } from 'lucide-react';
+import { Analytics } from "@vercel/analytics/react";
 import './App.css';
 
 const PrioritizationMatrix = () => {
@@ -428,6 +429,7 @@ function App() {
   return (
     <div className="App">
       <PrioritizationMatrix />
+      <Analytics />
     </div>
   );
 }
