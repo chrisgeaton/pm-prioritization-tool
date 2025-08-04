@@ -159,14 +159,14 @@ const exportImage = async () => {
     // Temporarily add to DOM for rendering
     exportContainer.style.position = 'absolute';
     exportContainer.style.left = '-9999px';
-    exportContainer.style.width = '800px';
+    exportContainer.style.width = '1200px';
     document.body.appendChild(exportContainer);
     
     // Generate canvas
     const canvas = await html2canvas(exportContainer, {
       backgroundColor: '#ffffff',
       scale: 2,
-      width: 1000,
+      width: 1200,
       height: 1200,
       useCORS: true,
       allowTaint: true
