@@ -8,6 +8,7 @@ const PrioritizationMatrix = () => {
     { id: 2, name: "Push Notifications", impact: 7, effort: 4, editing: false },
     { id: 3, name: "Dark Mode", impact: 3, effort: 2, editing: false },
     { id: 4, name: "Advanced Analytics", impact: 9, effort: 8, editing: false }
+    { id: 5, name: "Dashboard Rewrite", impact: 4, effort: 9, editing: false }
   ]);
   
   const [newFeature, setNewFeature] = useState({ name: '', impact: 5, effort: 5 });
