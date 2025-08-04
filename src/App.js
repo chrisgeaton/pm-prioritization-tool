@@ -7,7 +7,7 @@ const PrioritizationMatrix = () => {
     { id: 1, name: "User Authentication", impact: 8, effort: 6, editing: false },
     { id: 2, name: "Push Notifications", impact: 7, effort: 4, editing: false },
     { id: 3, name: "Dark Mode", impact: 3, effort: 2, editing: false },
-    { id: 4, name: "Advanced Analytics", impact: 9, effort: 8, editing: false }
+    { id: 4, name: "Advanced Analytics", impact: 9, effort: 8, editing: false },
     { id: 5, name: "Dashboard Rewrite", impact: 4, effort: 9, editing: false }
   ]);
   
