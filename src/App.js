@@ -8,6 +8,7 @@ const PrioritizationMatrix = () => {
     { id: 2, name: "Push Notifications", impact: 7, effort: 4, editing: false },
     { id: 3, name: "Dark Mode", impact: 3, effort: 2, editing: false },
     { id: 4, name: "Advanced Analytics", impact: 9, effort: 8, editing: false }
+    { id: 5, name: "Dashboard Rewrite", impact: 4, effort: 9, editing: false }
   ]);
   
   const [newFeature, setNewFeature] = useState({ name: '', impact: 5, effort: 5 });
@@ -69,122 +70,122 @@ const PrioritizationMatrix = () => {
     return { name: "Thankless Tasks", color: "bg-red-500", priority: "Consider Dropping" };
   };
 
-  const exportImage = async () => {
-    try {
-      // Import html2canvas dynamically
-      const html2canvas = await import('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
-      
-      if (!matrixRef.current) return;
-      
-      // Create a container with the matrix and legend for export
-      const exportContainer = document.createElement('div');
-      exportContainer.style.background = 'white';
-      exportContainer.style.padding = '20px';
-      exportContainer.style.fontFamily = 'system-ui, -apple-system, sans-serif';
-      
-      // Clone the matrix
-      const matrixClone = matrixRef.current.cloneNode(true);
-      matrixClone.style.marginBottom = '20px';
-      
-      // Create title
-      const title = document.createElement('h2');
-      title.textContent = 'Feature Prioritization Matrix';
-      title.style.textAlign = 'center';
-      title.style.marginBottom = '10px';
-      title.style.fontSize = '24px';
-      title.style.fontWeight = 'bold';
-      
-      // Create subtitle
-      const subtitle = document.createElement('p');
-      subtitle.textContent = 'Impact vs Effort Analysis';
-      subtitle.style.textAlign = 'center';
-      subtitle.style.marginBottom = '20px';
-      subtitle.style.color = '#666';
-      
-      // Create legend container
-      const legendContainer = document.createElement('div');
-      legendContainer.style.display = 'grid';
-      legendContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
-      legendContainer.style.gap = '10px';
-      legendContainer.style.marginTop = '20px';
-      
-      const legendItems = [
-        { name: 'Quick Wins', color: '#10b981', desc: 'High Impact, Low Effort - Do First!' },
-        { name: 'Major Projects', color: '#3b82f6', desc: 'High Impact, High Effort - Plan Carefully' },
-        { name: 'Fill-ins', color: '#eab308', desc: 'Low Impact, Low Effort - Spare Capacity' },
-        { name: 'Thankless Tasks', color: '#ef4444', desc: 'Low Impact, High Effort - Consider Dropping' }
-      ];
-      
-      legendItems.forEach(item => {
-        const legendItem = document.createElement('div');
-        legendItem.style.display = 'flex';
-        legendItem.style.alignItems = 'center';
-        legendItem.style.gap = '8px';
-        legendItem.style.padding = '8px';
-        legendItem.style.border = '1px solid #e5e7eb';
-        legendItem.style.borderRadius = '8px';
-        
-        const colorBox = document.createElement('div');
-        colorBox.style.width = '16px';
-        colorBox.style.height = '16px';
-        colorBox.style.backgroundColor = item.color;
-        colorBox.style.borderRadius = '4px';
-        
-        const textContainer = document.createElement('div');
-        const itemName = document.createElement('div');
-        itemName.textContent = item.name;
-        itemName.style.fontWeight = 'bold';
-        itemName.style.fontSize = '14px';
-        
-        const itemDesc = document.createElement('div');
-        itemDesc.textContent = item.desc;
-        itemDesc.style.fontSize = '12px';
-        itemDesc.style.color = '#666';
-        
-        textContainer.appendChild(itemName);
-        textContainer.appendChild(itemDesc);
-        legendItem.appendChild(colorBox);
-        legendItem.appendChild(textContainer);
-        legendContainer.appendChild(legendItem);
-      });
-      
-      // Assemble export container
-      exportContainer.appendChild(title);
-      exportContainer.appendChild(subtitle);
-      exportContainer.appendChild(matrixClone);
-      exportContainer.appendChild(legendContainer);
-      
-      // Temporarily add to DOM for rendering
-      exportContainer.style.position = 'absolute';
-      exportContainer.style.left = '-9999px';
-      exportContainer.style.width = '800px';
-      document.body.appendChild(exportContainer);
-      
-      // Generate canvas
-      const canvas = await html2canvas.default(exportContainer, {
-        backgroundColor: '#ffffff',
-        scale: 2,
-        width: 800,
-        height: 1000,
-        useCORS: true,
-        allowTaint: true
-      });
-      
-      // Clean up
-      document.body.removeChild(exportContainer);
-      
-      // Download image
-      const link = document.createElement('a');
-      link.download = 'prioritization-matrix.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-      
-    } catch (error) {
-      console.error('Export failed:', error);
-      alert('Export failed. Please try taking a screenshot instead.');
-    }
-  };
 
+const exportImage = async () => {
+  try {
+    // Import html2canvas from installed package instead of CDN
+    const html2canvas = (await import('html2canvas')).default;
+    
+    if (!matrixRef.current) return;
+    
+    // Create a container with the matrix and legend for export
+    const exportContainer = document.createElement('div');
+    exportContainer.style.background = 'white';
+    exportContainer.style.padding = '20px';
+    exportContainer.style.fontFamily = 'system-ui, -apple-system, sans-serif';
+    
+    // Clone the matrix
+    const matrixClone = matrixRef.current.cloneNode(true);
+    matrixClone.style.marginBottom = '20px';
+    
+    // Create title
+    const title = document.createElement('h2');
+    title.textContent = 'Feature Prioritization Matrix';
+    title.style.textAlign = 'center';
+    title.style.marginBottom = '10px';
+    title.style.fontSize = '24px';
+    title.style.fontWeight = 'bold';
+    
+    // Create subtitle
+    const subtitle = document.createElement('p');
+    subtitle.textContent = 'Impact vs Effort Analysis';
+    subtitle.style.textAlign = 'center';
+    subtitle.style.marginBottom = '20px';
+    subtitle.style.color = '#666';
+    
+    // Create legend container
+    const legendContainer = document.createElement('div');
+    legendContainer.style.display = 'grid';
+    legendContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    legendContainer.style.gap = '10px';
+    legendContainer.style.marginTop = '20px';
+    
+    const legendItems = [
+      { name: 'Quick Wins', color: '#10b981', desc: 'High Impact, Low Effort - Do First!' },
+      { name: 'Major Projects', color: '#3b82f6', desc: 'High Impact, High Effort - Plan Carefully' },
+      { name: 'Fill-ins', color: '#eab308', desc: 'Low Impact, Low Effort - Spare Capacity' },
+      { name: 'Thankless Tasks', color: '#ef4444', desc: 'Low Impact, High Effort - Consider Dropping' }
+    ];
+    
+    legendItems.forEach(item => {
+      const legendItem = document.createElement('div');
+      legendItem.style.display = 'flex';
+      legendItem.style.alignItems = 'center';
+      legendItem.style.gap = '8px';
+      legendItem.style.padding = '8px';
+      legendItem.style.border = '1px solid #e5e7eb';
+      legendItem.style.borderRadius = '8px';
+      
+      const colorBox = document.createElement('div');
+      colorBox.style.width = '16px';
+      colorBox.style.height = '16px';
+      colorBox.style.backgroundColor = item.color;
+      colorBox.style.borderRadius = '4px';
+      
+      const textContainer = document.createElement('div');
+      const itemName = document.createElement('div');
+      itemName.textContent = item.name;
+      itemName.style.fontWeight = 'bold';
+      itemName.style.fontSize = '14px';
+      
+      const itemDesc = document.createElement('div');
+      itemDesc.textContent = item.desc;
+      itemDesc.style.fontSize = '12px';
+      itemDesc.style.color = '#666';
+      
+      textContainer.appendChild(itemName);
+      textContainer.appendChild(itemDesc);
+      legendItem.appendChild(colorBox);
+      legendItem.appendChild(textContainer);
+      legendContainer.appendChild(legendItem);
+    });
+    
+    // Assemble export container
+    exportContainer.appendChild(title);
+    exportContainer.appendChild(subtitle);
+    exportContainer.appendChild(matrixClone);
+    exportContainer.appendChild(legendContainer);
+    
+    // Temporarily add to DOM for rendering
+    exportContainer.style.position = 'absolute';
+    exportContainer.style.left = '-9999px';
+    exportContainer.style.width = '1200px';
+    document.body.appendChild(exportContainer);
+    
+    // Generate canvas
+    const canvas = await html2canvas(exportContainer, {
+      backgroundColor: '#ffffff',
+      scale: 2,
+      width: 1200,
+      height: 1200,
+      useCORS: true,
+      allowTaint: true
+    });
+    
+    // Clean up
+    document.body.removeChild(exportContainer);
+    
+    // Download image
+    const link = document.createElement('a');
+    link.download = 'prioritization-matrix.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    
+  } catch (error) {
+    console.error('Export failed:', error);
+    alert('Export failed. Please try taking a screenshot instead.');
+  }
+};
   return (
     <div className="max-w-6xl mx-auto p-6 bg-white min-h-screen">
       {/* Header */}
@@ -432,4 +433,6 @@ function App() {
   );
 }
 
+
 export default App;
+
