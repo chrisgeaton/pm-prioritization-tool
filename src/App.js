@@ -235,10 +235,119 @@ const PrioritizationMatrix = () => {
       )}
 
       {/* Matrix */}
-      <div ref={matrixRef} className="relative bg-white border h-[600px] w-full">
-        {/* You can insert quadrant labels and the rest of your matrix UI here */}
-        {/* This was truncated due to length — reuse your full matrix rendering from before */}
-      </div>
+		<div ref={matrixRef} className="relative bg-white border h-[600px] w-full">
+		  {/* Grid Lines */}
+		  <div className="absolute inset-0">
+			<div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-300"></div>
+			<div className="absolute top-1/2 left-0 right-0 h-px bg-gray-300"></div>
+		  </div>
+
+		  {/* Quadrant Labels */}
+		  <div className="absolute top-2 left-2 text-sm font-semibold text-green-700 bg-green-100 px-2 py-1 rounded">
+			Quick Wins<br /><span className="text-xs font-normal">High Impact, Low Effort</span>
+		  </div>
+		  <div className="absolute top-2 right-2 text-sm font-semibold text-blue-700 bg-blue-100 px-2 py-1 rounded">
+			Major Projects<br /><span className="text-xs font-normal">High Impact, High Effort</span>
+		  </div>
+		  <div className="absolute bottom-2 left-2 text-sm font-semibold text-yellow-700 bg-yellow-100 px-2 py-1 rounded">
+			Fill-ins<br /><span className="text-xs font-normal">Low Impact, Low Effort</span>
+		  </div>
+		  <div className="absolute bottom-2 right-2 text-sm font-semibold text-red-700 bg-red-100 px-2 py-1 rounded">
+			Thankless Tasks<br /><span className="text-xs font-normal">Low Impact, High Effort</span>
+		  </div>
+
+		  {/* Axis Labels */}
+		  <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-6 text-sm font-semibold text-gray-700">
+			Effort →
+		  </div>
+		  <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-8 -rotate-90 text-sm font-semibold text-gray-700">
+			Impact →
+		  </div>
+
+		  {/* Feature Points */}
+		  {features.map((feature) => {
+			const quadrant = getQuadrant(feature.impact, feature.effort);
+			const x = ((feature.effort - 1) / 9) * 100;
+			const y = ((10 - feature.impact) / 9) * 100;
+
+			return (
+			  <div
+				key={feature.id}
+				className="absolute transform -translate-x-1/2 -translate-y-1/2 group"
+				style={{ left: `${x}%`, top: `${y}%` }}
+			  >
+				{feature.editing ? (
+				  <div className="bg-white border-2 border-blue-500 rounded-lg p-2 shadow-lg min-w-48">
+					<input
+					  type="text"
+					  value={feature.tempName}
+					  onChange={(e) => updateTemp(feature.id, 'tempName', e.target.value)}
+					  className="w-full text-xs border rounded px-1 py-1 mb-1"
+					/>
+					<div className="text-xs mb-1">
+					  Impact: {feature.tempImpact}
+					  <input
+						type="range"
+						min="1"
+						max="10"
+						value={feature.tempImpact}
+						onChange={(e) => updateTemp(feature.id, 'tempImpact', parseInt(e.target.value))}
+						className="w-full"
+					  />
+					</div>
+					<div className="text-xs mb-2">
+					  Effort: {feature.tempEffort}
+					  <input
+						type="range"
+						min="1"
+						max="10"
+						value={feature.tempEffort}
+						onChange={(e) => updateTemp(feature.id, 'tempEffort', parseInt(e.target.value))}
+						className="w-full"
+					  />
+					</div>
+					<div className="flex gap-1">
+					  <button
+						onClick={() => saveEdit(feature.id)}
+						className="flex-1 bg-green-500 text-white text-xs py-1 rounded flex items-center justify-center"
+					  >
+						<Check size={12} />
+					  </button>
+					  <button
+						onClick={() => cancelEdit(feature.id)}
+						className="flex-1 bg-gray-500 text-white text-xs py-1 rounded flex items-center justify-center"
+					  >
+						<X size={12} />
+					  </button>
+					</div>
+				  </div>
+				) : (
+				  <div className={`${quadrant.color} text-white px-3 py-2 rounded-lg shadow-md cursor-pointer min-w-32 text-center relative`}>
+					<div className="font-semibold text-sm">{feature.name}</div>
+					<div className="text-xs opacity-90">I:{feature.impact} E:{feature.effort}</div>
+
+					{/* Action buttons - show on hover */}
+					<div className="absolute -top-2 -right-2 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
+					  <button
+						onClick={() => startEditing(feature.id)}
+						className="bg-white text-gray-700 p-1 rounded-full shadow-md hover:bg-gray-100"
+					  >
+						<Edit2 size={12} />
+					  </button>
+					  <button
+						onClick={() => deleteFeature(feature.id)}
+						className="bg-red-500 text-white p-1 rounded-full shadow-md hover:bg-red-600"
+					  >
+						<Trash2 size={12} />
+					  </button>
+					</div>
+				  </div>
+				)}
+			  </div>
+			);
+		  })}
+		</div>
+
     </div>
   );
 };
