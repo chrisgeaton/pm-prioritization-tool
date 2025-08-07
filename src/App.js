@@ -237,4 +237,19 @@ const PrioritizationMatrix = () => {
       {/* Matrix */}
       <div ref={matrixRef} className="relative bg-white border h-[600px] w-full">
         {/* You can insert quadrant labels and the rest of your matrix UI here */}
-        {/* This was truncated due to length — reuse your full matrix rendering f*/}
+        {/* This was truncated due to length — reuse your full matrix rendering from before */}
+      </div>
+    </div>
+  );
+};
+
+function App() {
+  return (
+    <div className="App">
+      <PrioritizationMatrix />
+      <Analytics />
+    </div>
+  );
+}
+
+export default App;
