@@ -303,18 +303,6 @@ const rankedFeatures = [...features]
           Impact →
         </div>
 
-		{/* Stack Rank */}
-		<div className="mt-10 bg-gray-50 p-4 rounded-lg border border-gray-200">
-		  <h3 className="text-lg font-semibold text-gray-700 mb-4">📋 Top Value Features</h3>
-		  <ol className="space-y-2 list-decimal list-inside">
-			{rankedFeatures.map((feature, index) => (
-			  <li key={feature.id} className="flex justify-between text-sm text-gray-800">
-				<span>{feature.name}</span>
-				<span className="font-mono text-gray-500">Score: {feature.valueScore}</span>
-			  </li>
-			))}
-		  </ol>
-		</div>
 
         {/* Features */}
         {features.map((feature) => {
@@ -399,6 +387,19 @@ const rankedFeatures = [...features]
           );
         })}
       </div>
+
+		{/* Stack Rank */}
+		<div className="mt-10 bg-gray-50 p-4 rounded-lg border border-gray-200">
+		  <h3 className="text-lg font-semibold text-gray-700 mb-4">📋 Top Value Features</h3>
+		  <ol className="space-y-2 list-decimal list-inside">
+			{rankedFeatures.map((feature, index) => (
+			  <li key={feature.id} className="flex justify-between text-sm text-gray-800">
+				<span>{feature.name}</span>
+				<span className="font-mono text-gray-500">Score: {feature.valueScore}</span>
+			  </li>
+			))}
+		  </ol>
+		</div>
 
       {/* Legend */}
       <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
