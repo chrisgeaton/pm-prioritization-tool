@@ -186,6 +186,11 @@ const PrioritizationMatrix = () => {
     }
   };
 
+const rankedFeatures = [...features]
+  .map(f => ({ ...f, valueScore: (f.impact / f.effort).toFixed(2) }))
+  .sort((a, b) => b.valueScore - a.valueScore);
+
+
   return (
     <div className="max-w-6xl mx-auto p-6 bg-white min-h-screen">
       {/* Header */}
@@ -297,6 +302,19 @@ const PrioritizationMatrix = () => {
         <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-8 -rotate-90 text-sm font-semibold text-gray-700">
           Impact →
         </div>
+
+		{/* Stack Rank */}
+		<div className="mt-10 bg-gray-50 p-4 rounded-lg border border-gray-200">
+		  <h3 className="text-lg font-semibold text-gray-700 mb-4">📋 Top Value Features</h3>
+		  <ol className="space-y-2 list-decimal list-inside">
+			{rankedFeatures.map((feature, index) => (
+			  <li key={feature.id} className="flex justify-between text-sm text-gray-800">
+				<span>{feature.name}</span>
+				<span className="font-mono text-gray-500">Score: {feature.valueScore}</span>
+			  </li>
+			))}
+		  </ol>
+		</div>
 
         {/* Features */}
         {features.map((feature) => {
