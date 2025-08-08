@@ -393,7 +393,7 @@ style={{ height: '600px' }}
 
 
 		{/* Stack Rank */}
-		<div className="w-full md:w-1/3 bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm">
+		<div className="w-full md:w-1/4 lg:w-1/5 bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm">
 		  <h3 className="text-lg font-semibold text-gray-700 mb-4">📋 Top Value Features</h3>
 		  <ol className="space-y-2 list-decimal list-inside">
 			{rankedFeatures.map((feature, index) => (
