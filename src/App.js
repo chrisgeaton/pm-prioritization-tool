@@ -275,7 +275,7 @@ const rankedFeatures = [...features]
 
 	<div className="flex flex-col md:flex-row gap-6 items-start">
       {/* Matrix */}
-      <div ref={matrixRef} className="bg-white border-2 border-gray-300 relative flex-shrink-0 w-full md:w-2/3"
+      <div ref={matrixRef} className="bg-white border-2 border-gray-300 relative flex-shrink-0 w-full md:w-3/4"
 style={{ height: '600px' }}
 >
         {/* Grid Lines */}
