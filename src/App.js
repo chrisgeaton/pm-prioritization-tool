@@ -273,11 +273,9 @@ const rankedFeatures = [...features]
         </div>
       )}
 
-	<div className="flex flex-col md:flex-row gap-6 items-start">
+	<div className="flex flex-col gap-6">
       {/* Matrix */}
-      <div ref={matrixRef} className="bg-white border-2 border-gray-300 relative flex-shrink-0 w-full md:w-3/4"
-style={{ height: '600px' }}
->
+      <div ref={matrixRef} className="bg-white border-2 border-gray-300 relative" style={{ height: '600px', width: '100%' }}>
         {/* Grid Lines */}
         <div className="absolute inset-0">
           <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-300"></div>
@@ -393,7 +391,7 @@ style={{ height: '600px' }}
 
 
 		{/* Stack Rank */}
-		<div className="w-full md:w-1/4 lg:w-1/5 bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm">
+		<div className="mt-6 bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm">
 		  <h3 className="text-lg font-semibold text-gray-700 mb-4">📋 Top Value Features</h3>
 		  <ol className="space-y-2 list-decimal list-inside">
 			{rankedFeatures.map((feature, index) => (
