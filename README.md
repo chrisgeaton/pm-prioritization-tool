@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Feature Prioritization Matrix
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A visual PM tool for plotting product features on an impact vs. effort matrix, with automatic quadrant classification and value-score ranking. Built for stakeholder conversations where a picture beats a spreadsheet.
 
-## Available Scripts
+## What It Does
 
-In the project directory, you can run:
+Enter any product feature with an **impact score** (1–10) and an **effort score** (1–10). The tool places it on a 2×2 matrix and classifies it into one of four quadrants:
 
-### `npm start`
+| Quadrant | Impact | Effort | Recommendation |
+|----------|--------|--------|----------------|
+| **Quick Wins** | High | Low | Do these first |
+| **Major Projects** | High | High | Plan carefully |
+| **Fill-ins** | Low | Low | Nice to have |
+| **Thankless Tasks** | Low | High | Consider dropping |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+A ranked list below the matrix sorts features by **value score** (impact ÷ effort), giving you a clear prioritization order at a glance.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
 
-### `npm test`
+- Add, edit, and delete features on the fly
+- Live matrix updates as you adjust sliders
+- Value-score stack rank sorted by impact/effort ratio
+- Export the matrix as a PNG for presentations
+- Zero backend — runs entirely in the browser
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tech Stack
 
-### `npm run build`
+- **React** — component state drives the matrix in real time
+- **Tailwind CSS** — utility-first styling, no custom CSS needed
+- **lucide-react** — icon set
+- **html2canvas** — client-side PNG export
+- **Vercel Analytics** — lightweight usage tracking
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Quick Start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm install
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### `npm run eject`
+## Key Design Decisions
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **No backend / no auth** — this is a session tool, not a database. Fast to load, easy to share.
+- **Impact ÷ effort as value score** — simple ratio keeps the ranking transparent and explainable to non-technical stakeholders.
+- **Client-side PNG export** — lets you paste the matrix directly into decks without a screenshot tool.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Status
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Active — deployed on Vercel.
